@@ -51,6 +51,18 @@ app.ask('name', {force: true}, function(err, answer) {
 });
 ```
 
+## Helpers
+
+Also adds an `ask` helper that can lookup stored questions and answers.
+
+The following will prompt the user once:
+
+```hbs
+{{ask "name"}}
+```
+
+If an answer is given by the user, it will be stored and automatically used until the user asks again on a new project or forces the question to be re-asked.
+
 ## API
 
 ## Related projects
