@@ -29,6 +29,7 @@
   "devDependencies": {
     "assemble": "assemble/assemble#dev",
     "data-store": "^0.9.0",
+    "engine-handlebars": "^0.8.0",
     "mocha": "*",
     "should": "*"
   },

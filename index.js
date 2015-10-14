@@ -59,11 +59,13 @@ module.exports = function (options) {
      * the user from templates
      */
 
-    app.asyncHelper('ask', function () {
-      var ask = config(this.app, this.context);
-      return function () {
-        return ask.apply(ask, arguments);
-      };
+    app.asyncHelper('ask', function (name, locals, cb) {
+      if (typeof locals === 'function') {
+        cb = locals;
+        locals = {};
+      }
+      var args = [name, locals.hash || {}, cb];
+      return this.app.ask.apply(this.app, args);
     });
   };
 };

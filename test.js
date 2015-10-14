@@ -82,5 +82,22 @@ describe('ask', function () {
         done();
       });
     });
+
+    it('should work as a helper', function (done) {
+      app.engine('hbs', require('engine-handlebars'));
+      app.create('pages', {engine: 'hbs'});
+      app.store.set('abc', 'xyz');
+
+      app.question('abc', 'What is abc?');
+
+      app.page('foo.hbs', {content: '{{ask "abc"}}'})
+        .render(function (err, view) {
+          if (err) return done(err);
+          assert(view.content);
+          assert(view.content === 'xyz');
+          app.store.del('abc');
+          done();
+        });
+    });
   });
 });
