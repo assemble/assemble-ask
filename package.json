@@ -1,0 +1,46 @@
+{
+  "name": "assemble-ask",
+  "description": "Assemble plugin for asking questions and storing answers.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/assemble-ask",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/assemble-ask",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/assemble-ask/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "utils.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "ask-once": "^0.4.3",
+    "lazy-cache": "^0.2.3",
+    "mixin-deep": "^1.1.3",
+    "question-cache": "^0.3.0"
+  },
+  "devDependencies": {
+    "assemble": "assemble/assemble#dev",
+    "data-store": "^0.9.0",
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [],
+  "verb": {
+    "related": {
+      "list": [
+        "assemble",
+        "assemble-loader",
+        "assemble-streams",
+        "assemble-permalinks"
+      ]
+    }
+  }
+}
