@@ -13,7 +13,8 @@ module.exports = function (options) {
   return function (app) {
 
     function config(inst, ctx) {
-      ctx = utils.merge({}, inst.store.data, ctx);
+      var data = inst.store && inst.store.data;
+      ctx = utils.merge({}, data, ctx);
       return utils.ask({
         questions: inst.questions,
         store: inst.store,
@@ -51,7 +52,7 @@ module.exports = function (options) {
         utils.merge(ctx, locals);
       }
       var ask = config(this, ctx);
-      return ask(name, ctx, cb);
+      return ask.once(name, ctx, cb);
     });
 
     /**
