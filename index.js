@@ -13,7 +13,8 @@ module.exports = function (options) {
   var Ask = utils.ask;
 
   return function (app) {
-    if (this.store && this.options.init) {
+    options = utils.merge({}, this.option('ask'), options);
+    if (this.store && options.init) {
       this.store.del({force: true});
     }
 
@@ -22,7 +23,6 @@ module.exports = function (options) {
      * @type {Object}
      */
 
-    options = utils.merge({}, this.options, options);
     this.questions = utils.questions(options);
 
     var ask = new Ask({
