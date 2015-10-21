@@ -10,16 +10,11 @@
 var utils = require('./utils');
 
 module.exports = function (options) {
-  return function (app) {
+  var Ask = utils.ask;
 
-    function config(inst, ctx) {
-      var data = inst.store && inst.store.data;
-      ctx = utils.merge({}, data, ctx);
-      return utils.ask({
-        questions: inst.questions,
-        store: inst.store,
-        data: ctx
-      });
+  return function (app) {
+    if (this.store && this.options.init) {
+      this.store.del({force: true});
     }
 
     /**
@@ -27,7 +22,13 @@ module.exports = function (options) {
      * @type {Object}
      */
 
+    options = utils.merge({}, this.options, options);
     this.questions = utils.questions(options);
+
+    var ask = new Ask({
+      questions: this.questions,
+      store: this.store,
+    });
 
     /**
      * Set a question to ask at a later point.
@@ -49,9 +50,8 @@ module.exports = function (options) {
       }
       var ctx = this.cache.data;
       if (typeof locals === 'object') {
-        utils.merge(ctx, locals);
+        ctx = utils.merge({}, ctx, locals.hash || locals);
       }
-      var ask = config(this, ctx);
       return ask.once(name, ctx, cb);
     });
 
@@ -65,7 +65,9 @@ module.exports = function (options) {
         cb = locals;
         locals = {};
       }
-      var args = [name, locals.hash || {}, cb];
+      locals = locals || {};
+      var opts = utils.merge({}, locals.hash || locals);
+      var args = [name, opts, cb];
       return this.app.ask.apply(this.app, args);
     });
   };

@@ -3,7 +3,7 @@
 require('mocha');
 var assert = require('assert');
 var should = require('should');
-var assemble = require('assemble');
+var assemble = require('assemble-core');
 var store = require('data-store');
 var ask = require('./');
 var app;
