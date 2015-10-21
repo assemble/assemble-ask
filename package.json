@@ -1,7 +1,7 @@
 {
   "name": "assemble-ask",
   "description": "Assemble plugin for asking questions and storing answers.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/jonschlinkert/assemble-ask",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/assemble-ask",
